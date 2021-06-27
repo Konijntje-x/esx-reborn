@@ -93,7 +93,7 @@ module.KickPlayer = function(playerId, reason)
   emitServer("esx:admin:kickPlayer", playerId, reason)
   local playerName = GetPlayerName(playerId)
   if Config.Modules.Admin.useDiscordLogs then
-    emitServer('toDiscord', '**Player kicked.** Player: '..playerName.. ' Reason: '..reason.. '', Config.Modules.Admin.discordLogsWebhook)
+    emitServer('esx:discordlogs:toDiscord', '**Player kicked.** Player: '..playerName.. ' Reason: '..reason.. '', Config.Modules.Admin.discordLogsWebhook)
   end
 end
 
@@ -101,7 +101,7 @@ module.BanPlayer = function(playerId, reason)
   emitServer("esx:admin:banPlayer", playerId, reason)
   local playerName = GetPlayerName(playerId)
   if Config.Modules.Admin.useDiscordLogs then
-    emitServer('toDiscord', '**Player banned.** Player: '..playerName.. ' Reason: '..reason.. '', Config.Modules.Admin.discordLogsWebhook)
+    emitServer('esx:discordlogs:toDiscord', '**Player banned.** Player: '..playerName.. ' Reason: '..reason.. '', Config.Modules.Admin.discordLogsWebhook)
   end
 end
 
@@ -126,7 +126,7 @@ module.SpawnProp = function(sourceId, propname)
     local prop = CreateObjectNoOffset(GetHashKey(propname), x, y, z, true, true, true)
     PlaceObjectOnGroundProperly(prop)
     if Config.Module.Admin.useDiscordLogs then
-      emitServer('toDiscord', '**Prop placed.** Prop: '..propname.. '', Config.Modules.Admin.discordLogsWebhook)
+      emitServer('esx:discordlogs:toDiscord', '**Prop placed.** Prop: '..propname.. '', Config.Modules.Admin.discordLogsWebhook)
     end
   end, sourceId)
 end
@@ -150,7 +150,7 @@ module.TeleportToMarker = function(sourceId)
         if foundGround then
           SetPedCoordsKeepVehicle(playerPed, vector3(waypointCoords["x"], waypointCoords["y"], zPos))
           if Config.Modules.Admin.useDiscordLogs then
-            emitServer('toDiscord', '**Serveradmin teleported to waypoint.** Waipoint: '..waypointCoords.. '', Config.Modules.Admin.discordLogsWebhook)
+            emitServer('esx:discordlogs:toDiscord', '**Serveradmin teleported to waypoint.** Waipoint: '..waypointCoords.. '', Config.Modules.Admin.discordLogsWebhook)
           end
           break
         end
@@ -213,7 +213,7 @@ module.SpawnVehicle = function(sourceId, vehicleName)
         TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
       end)
       if Config.Modules.Admin.useDiscordLogs then
-         emitServer('toDiscord', '**Vehicle spawned.** Vehicle: '..model.. '', Config.Modules.Admin.discordLogsWebhook)
+         emitServer('esx:discordlogs:toDiscord', '**Vehicle spawned.** Vehicle: '..model.. '', Config.Modules.Admin.discordLogsWebhook)
       end
     else
       utils.ui.showNotification(_U('admin_invalid_vehicle_model'))
@@ -275,7 +275,7 @@ module.FreezeUnfreeze = function(sourceId, action)
       SetPlayerInvincible(playerId, true)
       utils.ui.showNotification(_U('admin_result_freeze'))
       if Config.Module.Admin.useDiscordLogs then
-        emitServer('toDiscord', '**Player freezed.** Player: '..playerName.. '', Config.Modules.Admin.discordLogsWebhook)
+        emitServer('esx:discordlogs:toDiscord', '**Player freezed.** Player: '..playerName.. '', Config.Modules.Admin.discordLogsWebhook)
       end
     elseif action == 'unfreeze' then
       FreezeEntityPosition(playerPed, false)
@@ -283,7 +283,7 @@ module.FreezeUnfreeze = function(sourceId, action)
       SetPlayerInvincible(playerId, false)
       utils.ui.showNotification(_U('admin_result_unfreeze'))
       if Config.Module.Admin.useDiscordLogs then
-        emitServer('toDiscord', '**Player unfreezed.** Player: '..playerName.. '', Config.Modules.Admin.discordLogsWebhook)
+        emitServer('esx:discordlogs:toDiscord', '**Player unfreezed.** Player: '..playerName.. '', Config.Modules.Admin.discordLogsWebhook)
       end
     end
   end, sourceId)
@@ -305,7 +305,7 @@ module.RevivePlayer = function(sourceId)
     RemoveParticleFxFromEntity(playerPed)
     utils.ui.showNotification(_U('admin_result_revive'))
     if Config.Modules.Admin.useDiscordLogs then
-       emitServer('toDiscord', '**Player revived.** Player: '..playerName.. '', Config.Modules.Admin.discordLogsWebhook)
+       emitServer('esx:discordlogs:toDiscord', '**Player revived.** Player: '..playerName.. '', Config.Modules.Admin.discordLogsWebhook)
     end
   end, sourceId)
 end
