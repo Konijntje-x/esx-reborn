@@ -37,7 +37,7 @@ lifeCommand:setHandler(function(player, args, baseArgs)
 
   emitClient('rpchat:sendLifeInvaderMessage', -1, player.source, msg, name)
   if module.Config.DiscordLogs then
-    emit('esx:logs:toDiscord', '**LifeInvader message** Player: '..name.. ', message:'..msg..'', module.Config.DiscordWebhook)
+    emit('logs:server:toDiscord', '**LifeInvader message** Player: '..name.. ', message:'..msg..'', module.Config.DiscordWebhook)
   end
 end)
 
@@ -54,7 +54,7 @@ meCommand:setHandler(function(player, args, baseArgs)
 
   if msg and player.source then
     if module.Config.DiscordLogs then
-      emit('esx:logs:toDiscord', '**/me message** Player: '..firstname..''..lastname..', message:'..msg..'', module.Config.DiscordWebhook)
+      emit('logs:server:toDiscord', '**/me message** Player: '..firstname..''..lastname..', message:'..msg..'', module.Config.DiscordWebhook)
     end
     if module.Config.OverHeadMode then
       emitClient('rpchat:3DTextOverhead', -1, player.source, '~p~*~w~'..msg..'~p~*')
@@ -77,7 +77,7 @@ doCommand:setHandler(function(player, args, baseArgs)
 
   if msg and player.source then
     if module.Config.DiscordLogs then
-      emit('esx:logs:toDiscord', '**/do message** Player: '..firstname..''..lastname..', message:'..msg..'', module.Config.DiscordWebhook)
+      emit('logs:server:toDiscord', '**/do message** Player: '..firstname..''..lastname..', message:'..msg..'', module.Config.DiscordWebhook)
     end
     if module.Config.OverHeadMode then
       emitClient('rpchat:3DTextOverhead', -1, player.source, '~o~*~w~'..msg..'~o~*')
@@ -106,12 +106,12 @@ oocCommand:setHandler(function(player, args, baseArgs)
       if firstname and lastname then
         arg = {args = {'OOC | ' .. player.source .. ' | ' ..  firstname .. ' ' .. lastname, message}, color = {0, 255, 255}}
         if module.Config.DiscordLogs then
-          emit('esx:logs:toDiscord', '**/ooc message** OOC | ' .. player.source .. ' | ' ..  firstname .. ' ' .. lastname.. ', '..message..'', module.Config.DiscordWebhook)
+          emit('logs:server:toDiscord', '**/ooc message** OOC | ' .. player.source .. ' | ' ..  firstname .. ' ' .. lastname.. ', '..message..'', module.Config.DiscordWebhook)
         end
       else
         arg = {args = {'OOC | ' .. player.source, message}, color = {0, 255, 255}}
         if module.Config.DiscordLogs then
-          emit('esx:logs:toDiscord', '**/ooc message** OOC | ' .. player.source.. ', '..message..'', module.Config.DiscordWebhook)
+          emit('logs:server:toDiscord', '**/ooc message** OOC | ' .. player.source.. ', '..message..'', module.Config.DiscordWebhook)
         end
       end
 
@@ -142,12 +142,12 @@ goocCommand:setHandler(function(player, args, baseArgs)
       if firstname and lastname then
         arg = {args = {'GOOC | ' .. player.source .. ' | ' ..  firstname .. ' ' .. lastname, message}, color = {255, 165, 0}}
         if module.Config.DiscordLogs then
-          emit('esx:logs:toDiscord', '**/gooc message** GOOC | ' .. player.source .. ' | ' ..  firstname .. ' ' .. lastname..''.. message..'', module.Config.DiscordWebhook)
+          emit('logs:server:toDiscord', '**/gooc message** GOOC | ' .. player.source .. ' | ' ..  firstname .. ' ' .. lastname..''.. message..'', module.Config.DiscordWebhook)
         end
       else
         arg = {args = {'GOOC | ' .. player.source, message}, color = {255, 165, 0}}
         if module.Config.DiscordLogs then
-          emit('esx:logs:toDiscord', '**/gooc message** GOOC | ' .. player.source.. ',' ..message.. '', module.Config.DiscordWebhook)
+          emit('logs:server:toDiscord', '**/gooc message** GOOC | ' .. player.source.. ',' ..message.. '', module.Config.DiscordWebhook)
         end
       end
 
