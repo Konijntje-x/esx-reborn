@@ -106,38 +106,28 @@ end
 
 -- Game
 module.game.requestModel = function(model, cb)
-
-  if type(model) == 'string' then
-    model = GetHashKey(model)
-  end
-
-  local interval
-
-  RequestModel(model)
-
-  interval = ESX.SetInterval(50, function()
-
-    if HasModelLoaded(model) then
-
-      ESX.ClearInterval(interval)
-
-      if cb ~= nil then
-        cb()
+  if type(model) == 'string' then model = GetHashKey(model) end
+  if IsModelValid(model) then
+    local interval
+    RequestModel(model)
+    interval = ESX.SetInterval(50, function()
+      if HasModelLoaded(model) then
+        ESX.ClearInterval(interval)
+        if cb ~= nil then
+          cb()
+        end
       end
-
-    end
-
-  end)
-
+    end)
+  else
+    print('Invalid/inexistent model => ' .. model)
+  end
 end
 
 module.game.requestAnimDict = function(model, cb)
   if type(model) == 'string' then
 
     local interval
-
     RequestAnimDict(model)
-
     interval = ESX.SetInterval(50, function()
       if HasAnimDictLoaded(model) then
         ESX.ClearInterval(interval)
@@ -170,51 +160,35 @@ module.game.teleport = function(entity, coords)
 end
 
 module.game.createObject = function(model, coords, cb)
-
-  if type(model) == 'string' then
-    model = GetHashKey(model)
-  end
+  if type(model) == 'string' then model = GetHashKey(model) end
 
   module.game.requestModel(model, function()
-
     local obj = CreateObject(model, coords.x, coords.y, coords.z, true, false, true)
     SetModelAsNoLongerNeeded(model)
 
     if cb ~= nil then
       cb(obj)
     end
-
   end)
-
 end
 
 module.game.createLocalObject = function(model, coords, cb)
-
-  if type(model) == 'string' then
-    model = GetHashKey(model)
-  end
+if type(model) == 'string' then model = GetHashKey(model) end
 
   module.game.requestModel(model, function()
-
     local obj = CreateObject(model, coords.x, coords.y, coords.z, false, false, true)
     SetModelAsNoLongerNeeded(model)
 
     if cb ~= nil then
       cb(obj)
     end
-
   end)
-
 end
 
 module.game.createVehicle = function(model, coords, heading, cb)
-
-  if type(model) == 'string' then
-    model = GetHashKey(model)
-  end
+  if type(model) == 'string' then model = GetHashKey(model) end
 
   module.game.requestModel(model, function()
-
     RequestCollisionAtCoord(coords.x, coords.y, coords.z)
 
     local vehicle   = CreateVehicle(model, coords.x, coords.y, coords.z, heading, true, false)
@@ -231,16 +205,11 @@ module.game.createVehicle = function(model, coords, heading, cb)
     if cb ~= nil then
       cb(vehicle)
     end
-
   end)
-
 end
 
 module.game.createLocalVehicle = function(model, coords, heading, cb)
-
-  if type(model) == 'string' then
-    model = GetHashKey(model)
-  end
+  if type(model) == 'string' then model = GetHashKey(model) end
 
   module.game.requestModel(model, function()
 

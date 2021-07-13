@@ -16,15 +16,9 @@ module.server = module.server or {}
 local CREATE_AUTOMOBILE = GetHashKey('CREATE_AUTOMOBILE')
 
 module.game.createVehicle = function (model, coords, heading, cb)
-
-  if type(model) == 'string' then
-    model = GetHashKey(model)
-  end
-
+  if type(model) == 'string' then model = GetHashKey(model) end
   local vehicle = Citizen.InvokeNative(CREATE_AUTOMOBILE, model, coords, heading)
-
   local interval
-
   interval = ESX.SetInterval(0, function()
     if DoesEntityExist(vehicle) then
       ESX.ClearInterval(interval)
@@ -39,35 +33,25 @@ module.game.createVehicle = function (model, coords, heading, cb)
 end
 
 module.game.createPed = function (model, coords, heading, cb)
-  if type(model) == 'string' then
-    modelHash = GetHashKey(model)
-
-    -- print("CreatePed: model = " .. model .. " | coords = " .. json.encode(coords) .. " | heading = " .. tostring(heading))
-    local ped = CreatePed(4, modelHash, coords, heading, true, false)
-
-    local interval
-
-    interval = ESX.SetInterval(0, function()
-      if DoesEntityExist(ped) then
-        ESX.ClearInterval(interval)
-      end
-    end)
-    
-    if ped and cb then
-      cb(ped)
-    else
-      cb(nil)
+  if type(model) == 'string' then modelHash = GetHashKey(model) end
+  -- print("CreatePed: model = " .. model .. " | coords = " .. json.encode(coords) .. " | heading = " .. tostring(heading))
+  local ped = CreatePed(4, modelHash, coords, heading, true, false)
+  local interval
+  interval = ESX.SetInterval(0, function()
+    if DoesEntityExist(ped) then
+      ESX.ClearInterval(interval)
     end
+  end)
+    
+  if ped and cb then
+    cb(ped)
   else
     cb(nil)
   end
 end
 
 module.game.createLocalVehicle = function(model, coords, heading, cb)
-  if type(model) == 'string' then
-    model = GetHashKey(model)
-  end
-
+  if type(model) == 'string' then model = GetHashKey(model) end
   local vehicle = CreateVehicle(model, coords.x, coords.y, coords.z, heading, false, false)
 
   if vehicle and cb then
