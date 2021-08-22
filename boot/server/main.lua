@@ -74,7 +74,7 @@ Citizen.CreateThread(
 						)
 						end
 					else
-						print('[^5es_extended^0] [^1ERROR^0] ESX-Reborn is unable to check version!')
+						print('[^5esx-reborn^0] [^1ERROR^0] ESX Reborn is unable to check version!')
 					end
 				end,
 				'GET'
