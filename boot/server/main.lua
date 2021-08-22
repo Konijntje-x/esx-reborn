@@ -31,7 +31,7 @@ Citizen.CreateThread(
 								([[
 
 ^1----------------------------------------------------------------------
-^1URGENT: YOUR ES-EXTENDED IS OUTDATED!
+^1URGENT: ESX REBORN IS OUTDATED!
 ^1COMMIT UPDATE: ^5%s AVAILABLE
 ^1DOWNLOAD:^5 https://github.com/esx-framework/esx-reborn/tree/experimental
 ^1CHANGELOG:^5 %s
@@ -46,7 +46,7 @@ Citizen.CreateThread(
 								([[
 
 ^8-------------------------------------------------------
-^2Your Es-extended is the latest version!
+^2ESX REBORN IS UP TO DATE!
 ^5Version:^0 %s
 ^5COMMIT:^0 %s
 ^5CHANGELOG:^0 %s
@@ -62,7 +62,7 @@ Citizen.CreateThread(
 						print(
 							([[
 ^1----------------------------------------------------------------------
-^1URGENT: YOUR ES-EXTENDED IS OUTDATATED!!!
+^1URGENT: ESX REBORN IS OUTDATED!
 ^1COMMIT UPDATE: ^5%s AVAILABLE
 ^1DOWNLOAD:^5 https://github.com/esx-framework/esx-reborn/tree/experimental
 ^1CHANGELOG:^5 %s
