@@ -10,8 +10,10 @@
 --   If you redistribute this software, you must link to ORIGINAL repository at https://github.com/esx-framework/esx-reborn
 --   This copyright should appear in every part of the project code
 
-on('esx:atm:close', function()
-    ClearPedTasks(PlayerPedId())
-    module.Busy = false
-    module.RestoreLoadout()
+onClient('logs:toDiscord', function(message, webhook)
+  module.SendLogs(message, webhook)
+end)
+
+on('logs:server:toDiscord', function(message, webhook)
+  module.SendLogs(message, webhook)
 end)

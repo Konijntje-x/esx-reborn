@@ -62,7 +62,7 @@ removeMoneyCommand:setHandler(function(player, args)
 
   local player = Player.fromId(player.source)
   local identity = player:getIdentity()
-  local accounts = identity:getAccoutns()
+  local accounts = identity:getAccounts()
 
   accounts:removeMoney(args.account, args.amount, function(result)
     if result then

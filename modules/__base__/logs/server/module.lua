@@ -10,8 +10,14 @@
 --   If you redistribute this software, you must link to ORIGINAL repository at https://github.com/esx-framework/esx-reborn
 --   This copyright should appear in every part of the project code
 
-on('esx:atm:close', function()
-    ClearPedTasks(PlayerPedId())
-    module.Busy = false
-    module.RestoreLoadout()
-end)
+module.Config  = run('data/config.lua', {vector3 = vector3})['Config']
+
+module.SendLogs = function(message)
+  if message == nil or message == '' then return false end
+
+  if module.Config.webhook then
+    PerformHttpRequest(module.Config.webhook, function(err, text, headers) end, 'POST', json.encode({ content = message }), { ['Content-Type'] = 'application/json' })
+  else
+	  return false
+  end
+end
