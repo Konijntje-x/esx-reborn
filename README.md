@@ -17,7 +17,7 @@
 ### Requirements:
 
 - An installed MariaDB server (we will not support MySQL).
-- [ghmattimysql by GHMatti](https://github.com/GHMatti/ghmattimysql/releases/tag/1.3.2)
+- [ghmattimysql by GHMatti](https://github.com/Konijntje-x/GHMattimysql/releases/tag/v1)
 - [Node.Js 10+](https://nodejs.org/en/)
 
 ### How to Install:
